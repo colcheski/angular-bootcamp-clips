@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/signals';
 
 interface IModal {
   id: string;
@@ -18,6 +19,12 @@ export class ModalService {
       id,
       visible: false
     });
+  }
+
+  unregister(id: string) {
+    this.modals = this.modals.filter(
+      element => element.id !== id
+    )
   }
 
   isModalOpen(id: string): boolean {
